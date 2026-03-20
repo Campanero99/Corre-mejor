@@ -1,0 +1,28 @@
+{
+  "name": "Correr mejor",
+  "short_name": "Correr",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
+```
+
+**Paso 3:** Asegúrate de que tu `icon.png` esté en la misma carpeta. Lo ideal es que mida **192x192 píxeles** o más (180x180 también funciona).
+
+---
+
+**Estructura de archivos que debes tener:**
+```
+📁 tu-carpeta/
+  ├── index.html
+  ├── manifest.json       ← nuevo
+  ├── icon.png
+  └── service-worker.js
