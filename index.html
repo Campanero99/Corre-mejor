@@ -6,6 +6,7 @@
     <title>Correr mejor</title>
 <link rel="icon" type="image/png" sizes="180x180" href="icon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+<link rel="manifest" href="manifest.json">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -339,7 +340,7 @@
             }
             
             var html = '<div class="space-y-3">';
-            html += '<div class="bg-green-100 p-4 rounded-xl"><div class="font-bold">Recuperación (&lt;67%)</div><div class="text-2xl">&lt; ' + Math.round(hf*0.67) + ' ppm</div></div>';
+            html += '<div class="bg-green-100 p-4 rounded-xl"><div class="font-bold">Recuperación (&lt;68%)</div><div class="text-2xl">&lt; ' + Math.round(hf*0.68) + ' ppm</div></div>';
             html += '<div class="bg-blue-100 p-4 rounded-xl"><div class="font-bold">Zona 1 (68-72%)</div><div class="text-2xl">' + Math.round(hf*0.68) + '-' + Math.round(hf*0.72) + ' ppm</div></div>';
             html += '<div class="bg-cyan-100 p-4 rounded-xl"><div class="font-bold">Zona 2 (77-79%)</div><div class="text-2xl">' + Math.round(hf*0.77) + '-' + Math.round(hf*0.79) + ' ppm</div></div>';
             html += '<div class="bg-orange-100 p-4 rounded-xl"><div class="font-bold">Zona 3 (80-84%)</div><div class="text-2xl">' + Math.round(hf*0.80) + '-' + Math.round(hf*0.84) + ' Bpm</div></div>';
