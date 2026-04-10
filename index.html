@@ -23,6 +23,18 @@
       from { transform: rotate(0deg); }
       to   { transform: rotate(360deg); }
 	}
+    .tab-active {
+      background-color: #6366f1;
+      color: white;
+    }
+    .tab-inactive {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+    .tab-inactive:hover {
+      background-color: #c7d2fe;
+      color: #3730a3;
+    }
   </style>
 </head>
 <body>
@@ -41,12 +53,12 @@
 
       <!-- Tabs -->
 <div class="bg-white rounded-2xl shadow-xl mb-6 p-2">
-    <div class="flex gap-2 flex-wrap">
-        <button onclick="changeTab('hf')" id="tab-hf" class="flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-active">Frecuencia</button>
-        <button onclick="changeTab('zeiten')" id="tab-zeiten" class="flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive">Tiempos</button>
-        <button onclick="changeTab('tempos')" id="tab-tempos" class="flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive">Ritmos</button>
-        <button onclick="changeTab('plan')" id="tab-plan" class="flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive">Plan</button>
-        <button onclick="changeTab('empfehlungen')" id="tab-empfehlungen" class="flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive">Recomendaciones</button>
+    <div class="flex flex-col gap-2">
+        <button onclick="changeTab('hf')" id="tab-hf" class="w-full py-3 px-4 rounded-xl font-semibold tab-active">Frecuencia</button>
+        <button onclick="changeTab('zeiten')" id="tab-zeiten" class="w-full py-3 px-4 rounded-xl font-semibold tab-inactive">Pronóstico</button>
+        <button onclick="changeTab('tempos')" id="tab-tempos" class="w-full py-3 px-4 rounded-xl font-semibold tab-inactive">Ritmos</button>
+        <button onclick="changeTab('plan')" id="tab-plan" class="w-full py-3 px-4 rounded-xl font-semibold tab-inactive">Plan</button>
+        <button onclick="changeTab('empfehlungen')" id="tab-empfehlungen" class="w-full py-3 px-4 rounded-xl font-semibold tab-inactive">Recomendaciones</button>
     </div>
 </div>
 
@@ -314,12 +326,12 @@
     document.getElementById('content-empfehlungen').className = 'hidden';
     document.getElementById('content-' + tab).className = '';
     
-    document.getElementById('tab-hf').className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive';
-    document.getElementById('tab-zeiten').className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive';
-    document.getElementById('tab-tempos').className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive';
-    document.getElementById('tab-plan').className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive';
-    document.getElementById('tab-empfehlungen').className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-inactive';
-    document.getElementById('tab-' + tab).className = 'flex-1 min-w-[100px] py-3 px-4 rounded-xl font-semibold tab-active';
+    document.getElementById('tab-hf').className = 'w-full py-3 px-4 rounded-xl font-semibold tab-inactive';
+    document.getElementById('tab-zeiten').className = 'w-full py-3 px-4 rounded-xl font-semibold tab-inactive';
+    document.getElementById('tab-tempos').className = 'w-full py-3 px-4 rounded-xl font-semibold tab-inactive';
+    document.getElementById('tab-plan').className = 'w-full py-3 px-4 rounded-xl font-semibold tab-inactive';
+    document.getElementById('tab-empfehlungen').className = 'w-full py-3 px-4 rounded-xl font-semibold tab-inactive';
+    document.getElementById('tab-' + tab).className = 'w-full py-3 px-4 rounded-xl font-semibold tab-active';
     
     if (tab === 'plan') updatePlan();
 }
