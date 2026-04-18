@@ -389,7 +389,7 @@
                 hfCalc = Math.round(215 - 0.64 * edad);
                 formula = '215 − (0,64 × ' + edad + ')';
             }
-            document.getElementById('hfCalcInfo').innerHTML = '→ FC máx. estimada: <strong>' + hfCalc + ' ppm</strong><br><span class="text-gray-400">(' + formula + ')</span>';
+            document.getElementById('hfCalcInfo').innerHTML = '→ FC máx. estimada: <strong>' + hfCalc + ' ppm</strong><br><span class="text-gray-400"></span>';
             // Actualizar el campo hfMax automáticamente
             document.getElementById('hfMax').value = hfCalc;
             savedHF = hfCalc;
