@@ -62,7 +62,14 @@
     </div>
 </div>
 
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Geschlecht</label>
+       <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Deine maximale HF (gemessen oder aus einem Test)</label>
+                    <input type="number" value={hfMax} onChange={e => setHfMax(e.target.value)} placeholder="z. B. 185"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:outline-none text-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Geschlecht</label>
                     <div className="flex gap-3 mb-3">
                       <button
                         onClick={() => setSexo('hombre')}
