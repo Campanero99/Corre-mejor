@@ -62,23 +62,33 @@
     </div>
 </div>
 
-        <!-- HF Content -->
-        <div id="content-hf">
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-                <h2 class="text-1xl font-bold mb-6">Zonas de frecuencia</h2>
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2">Frecuencia máxima</label>
-                        <input type="number" id="hfMax" placeholder="ejemplo 185" class="w-full px-4 py-3 border-2 rounded-xl">
+        <label className="block text-sm font-semibold text-gray-700 mb-2">Geschlecht</label>
+                    <div className="flex gap-3 mb-3">
+                      <button
+                        onClick={() => setSexo('hombre')}
+                        className={`flex-1 py-2 px-4 rounded-xl font-semibold border-2 transition-colors ${sexo === 'hombre' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-700 border-gray-300 hover:border-indigo-400'}`}>
+                        Männlich
+                      </button>
+                      <button
+                        onClick={() => setSexo('mujer')}
+                        className={`flex-1 py-2 px-4 rounded-xl font-semibold border-2 transition-colors ${sexo === 'mujer' ? 'bg-pink-500 text-white border-pink-500' : 'bg-white text-gray-700 border-gray-300 hover:border-pink-400'}`}>
+                        Weiblich
+                      </button>
                     </div>
-                    <div>
-                        <label class="block text-sm font-semibold mb-2">Edad (opcional)</label>
-                        <input type="number" id="alter" placeholder="ejemplo 35" class="w-full px-4 py-3 border-2 rounded-xl">
-                    </div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Alter (zur Berechnung der max. HF)</label>
+                    <input type="number" value={alter} onChange={e => setAlter(e.target.value)} placeholder="z. B. 35"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:outline-none text-lg" />
+                    {alter && (
+                      <p className="text-sm text-indigo-600 mt-1 font-medium">
+                        Geschätzte max. HF ({sexo === 'hombre' ? '211 − 0,64 × Alter' : '215 − 0,64 × Alter'}): {sexo === 'hombre' ? Math.round(211 - 0.64 * parseInt(alter)) : Math.round(215 - 0.64 * parseInt(alter))} bpm
+                        <button onClick={() => setHfMax(String(sexo === 'hombre' ? Math.round(211 - 0.64 * parseInt(alter)) : Math.round(215 - 0.64 * parseInt(alter))))}
+                          className="ml-2 text-xs bg-indigo-600 text-white px-2 py-0.5 rounded-lg hover:bg-indigo-700">
+                          Übernehmen
+                        </button>
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div id="hfResult"></div>
-            </div>
-        </div>
 
         <!-- Zeiten Content -->
         <div id="content-zeiten" class="hidden">
