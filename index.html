@@ -68,12 +68,18 @@
                 <h2 class="text-1xl font-bold mb-6">Zonas de frecuencia</h2>
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label class="block text-sm font-semibold mb-2">Frecuencia máxima</label>
+                        <label class="block text-sm font-semibold mb-2">Frecuencia máxima (ppm)</label>
                         <input type="number" id="hfMax" placeholder="ejemplo 185" class="w-full px-4 py-3 border-2 rounded-xl">
+                        <p class="text-xs text-gray-500 mt-1">O calcula con la edad ↓</p>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-2">Edad (opcional)</label>
-                        <input type="number" id="alter" placeholder="ejemplo 35" class="w-full px-4 py-3 border-2 rounded-xl">
+                        <label class="block text-sm font-semibold mb-2">Edad (para calcular FC máx.)</label>
+                        <input type="number" id="alter" placeholder="ejemplo 35" class="w-full px-4 py-3 border-2 rounded-xl mb-2">
+                        <div class="flex gap-2">
+                            <button onclick="setSexo('h')" id="btn-hombre" class="flex-1 py-2 px-3 rounded-xl text-sm font-semibold bg-indigo-600 text-white">♂ Hombre</button>
+                            <button onclick="setSexo('m')" id="btn-mujer" class="flex-1 py-2 px-3 rounded-xl text-sm font-semibold bg-gray-200 text-gray-700">♀ Mujer</button>
+                        </div>
+                        <div id="hfCalcInfo" class="text-xs text-gray-500 mt-1"></div>
                     </div>
                 </div>
                 <div id="hfResult"></div>
@@ -318,6 +324,14 @@
         var currentZiel = '10k';
         var currentPlan = '10k';
         var savedHF = null;
+        var currentSexo = 'h'; // 'h' = hombre, 'm' = mujer
+
+        function setSexo(sexo) {
+            currentSexo = sexo;
+            document.getElementById('btn-hombre').className = 'flex-1 py-2 px-3 rounded-xl text-sm font-semibold ' + (sexo === 'h' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700');
+            document.getElementById('btn-mujer').className = 'flex-1 py-2 px-3 rounded-xl text-sm font-semibold ' + (sexo === 'm' ? 'bg-pink-500 text-white' : 'bg-gray-200 text-gray-700');
+            calcDesdeEdad();
+        }
   function changeTab(tab) {
     document.getElementById('content-hf').className = 'hidden';
     document.getElementById('content-zeiten').className = 'hidden';
@@ -358,6 +372,28 @@
                 document.getElementById('plan10k').className = 'p-6 bg-gray-200 rounded-xl';
             }
             updatePlan();
+        }
+
+        function calcDesdeEdad() {
+            var edad = parseInt(document.getElementById('alter').value);
+            if (!edad || edad < 10 || edad > 100) {
+                document.getElementById('hfCalcInfo').innerHTML = '';
+                return;
+            }
+            var hfCalc;
+            var formula;
+            if (currentSexo === 'h') {
+                hfCalc = Math.round(211 - 0.64 * edad);
+                formula = '211 − (0,64 × ' + edad + ')';
+            } else {
+                hfCalc = Math.round(215 - 0.64 * edad);
+                formula = '215 − (0,64 × ' + edad + ')';
+            }
+            document.getElementById('hfCalcInfo').innerHTML = '→ FC máx. estimada: <strong>' + hfCalc + ' ppm</strong><br><span class="text-gray-400">(' + formula + ')</span>';
+            // Actualizar el campo hfMax automáticamente
+            document.getElementById('hfMax').value = hfCalc;
+            savedHF = hfCalc;
+            calcHF();
         }
 
         function calcHF() {
@@ -495,6 +531,7 @@
         }
 
         document.getElementById('hfMax').addEventListener('input', calcHF);
+        document.getElementById('alter').addEventListener('input', calcDesdeEdad);
         document.getElementById('min10k').addEventListener('input', calcZeiten);
         document.getElementById('sek10k').addEventListener('input', calcZeiten);
         document.getElementById('hMarathon').addEventListener('input', calcZeiten);
