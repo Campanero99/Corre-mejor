@@ -62,17 +62,27 @@
     </div>
 </div>
 
-        <!-- HF Content -->
-        <div id="content-hf">
-            <div class="bg-white rounded-2xl shadow-xl p-8">
-                <h2 class="text-1xl font-bold mb-6">Zonas de frecuencia</h2>
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-sm font-semibold mb-2">Frecuencia máxima</label>
-                        <input type="number" id="hfMax" placeholder="ejemplo 185" class="w-full px-4 py-3 border-2 rounded-xl">
-                    </div>
-                    <div>
-                     <label className="block text-sm font-semibold text-gray-700 mb-2">Geschlecht</label>
+          {activeTab === 'hf' && (
+              <div className="bg-white rounded-2xl shadow-xl p-8">
+                <h2 className="text-1xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <Heart className="w-7 h-7 text-red-500" />
+                  Herzfrequenz-Zonen
+                </h2>
+
+                <div className="mb-6 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                  <p className="text-yellow-800 font-semibold">
+                    💡 Empfehlung: Führe einen Belastungstest durch, um deine tatsächliche maximale Herzfrequenz zu ermitteln.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Deine maximale HF (gemessen oder aus einem Test)</label>
+                    <input type="number" value={hfMax} onChange={e => setHfMax(e.target.value)} placeholder="z. B. 185"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-indigo-500 focus:outline-none text-lg" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Geschlecht</label>
                     <div className="flex gap-3 mb-3">
                       <button
                         onClick={() => setSexo('hombre')}
